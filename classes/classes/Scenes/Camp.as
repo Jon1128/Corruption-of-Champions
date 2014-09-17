@@ -1326,8 +1326,8 @@ private function swimInStream():void {
 	//Izma!
 	if (camp.izmaFollower())
 	{
-		outputText("\n\nYour tiger-shark beta, Izma, joins you. You are frightened at first when you saw the fin protruding from the water and the fin approaches you! ", false);
-		outputText("As the fin appoaches you, the familiar figure comes up. It's your tiger-shark lover, Izma! \"<i>I was going to enjoy my daily swim, alpha,</i>\" she says.", false);
+		outputText("\n\nYour tiger-shark beta, Izma, joins you. You are frightened at first when you se the fin protruding from the water as it approaches you! ", false);
+		outputText("As the fin appoaches you, the familiar figure comes up. It's your tiger-shark lover, Izma! \"<i>I was going to enjoy my daily swim, my alpha,</i>\" she says.", false);
 	}
 	//Helia!
 	if (camp.followerHel() && flags[kFLAGS.HEL_CAN_SWIM])
@@ -1341,54 +1341,13 @@ private function swimInStream():void {
 	}
 	//Pranks!
 	if (prankChooser == 0 && (camp.izmaFollower() || (camp.followerHel() && flags[kFLAGS.HEL_CAN_SWIM]) || camp.marbleFollower()) )
-	{
-		outputText("\n\nYou could play some pranks by making the water curiously warm. Do you?", false)
-		doYesNo(swimInStreamPrank1, swimInStreamFinish);
-	}
-	/*if (prankChooser == 1 && (camp.izmaFollower() || (camp.followerHel() && flags[kFLAGS.HEL_CAN_SWIM]) || camp.marbleFollower()) )
+	if (prankChooser == 1 && (camp.izmaFollower() || (camp.followerHel() && flags[kFLAGS.HEL_CAN_SWIM]) || camp.marbleFollower()) )
 	{
 		outputText("\n\nYou could play some pranks by grabbing the leg of one of them and surprise them. Do you?", false)
 		doYesNo(swimInStreamPrank2, swimInStreamFinish);
-	}*/
+	}
 	else doNext(swimInStreamFinish);
-	
 }
-
-private function swimInStreamPrank1():void {
-	var pranked:Boolean = false;
-	var prankRoll:Number = 1;
-	//How many people joined!
-	if (camp.izmaFollower()) prankRoll++;
-	if (camp.followerHel() && flags[kFLAGS.HEL_CAN_SWIM]) prankRoll++;
-	if (camp.marbleFollower()) prankRoll++;
-	if (camp.amilyFollower()) prankRoll++
-	//Play joke on them!
-	outputText("You look around to make sure no one is looking then you smirk and you can feel yourself peeing. When you're done, you swim away.", true)
-	if (rand(prankRoll) == 0 && camp.izmaFollower() && pranked == false)
-	{
-		outputText("\n\nIzma just swims over, unaware of the warm spot you just created. \"<i>Who've pissed in the stream?</i>\" she growls. You swim over to her and tell her that you admit you did pee in the stream. \"<i>Oh, alpha! What a naughty alpha you are,</i>\" she grins, her shark-teeth clearly visible. ", false);
-		pranked = true;
-	}
-	if (rand(prankRoll) == 0 && (camp.followerHel() && flags[kFLAGS.HEL_CAN_SWIM]) && pranked == false)
-	{
-		outputText("\n\nHelia swims around until she hits the warm spot you just created. \"<i>Heyyyyyyy,</i>\" the salamander yells towards you. She comes towards you and asks \"<i>Did you just piss in the stream?</i>\" after which you sheepishly chuckle and tell her that you admit it. Yes, you've done it. \"<i>I knew it! Oh, you're naughty indeed,</i>\" she says. ", false);
-		pranked = true;
-	}
-	if (rand(prankRoll) == 0 && camp.marbleFollower() && pranked == false)
-	{
-		outputText("\n\nMarble is oblivious to the warm spot and when she swims over, she yells \"<i>Hey, sweetie! Did you just urinate in the stream?</i>\" You sheepishly smile and admit that yes, you did it. She replies \"<i>You're naughty, you know, sweetie!</i>\"", false);
-		pranked = true;
-	}
-	if (rand(prankRoll) == 0 && camp.amilyFollower() && flags[kFLAGS.AMILY_OWNS_BIKINI] > 0 && pranked == false)
-	{
-		outputText("\n\nMarble is oblivious to the warm spot and when she swims over, she yells \"<i>Hey, sweetie! Did you just urinate in the stream?</i>\" You sheepishly smile and admit that yes, you did it. She replies \"<i>You're naughty, you know, sweetie!</i>\"", false);
-		pranked = true;
-	}
-	if (pranked == false) outputText("No one managed to swim past where you left the warm spot before it dissipated. You feel a bit disappointed and just go back to swimming. ", false);
-	else outputText("You feel accomplished from the prank and resume swimming. ", false);
-	doNext(swimInStreamFinish);
-}
-
 private function swimInStreamFinish():void {
 	outputText("", true);
 	//Blown up factory? Corruption gains.
