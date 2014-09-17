@@ -225,7 +225,7 @@ private function armorShops():void {
 	addButton(1, "Piercing", piercingStudio);
 	addButton(2, "Tailor", tailorShoppe);
 	addButton(3, "Weapons", weaponShop);
-	addButton(4, "Jewellery", jewelShopEntry);
+	addButton(4, "Jewelery", jewelShopEntry);
 	if (flags[kFLAGS.LOPPE_PC_MET_UMA] == 1)
 	{
 		addButton(5, "Clinic", umasShop.enterClinic);
@@ -1504,12 +1504,12 @@ private function debitWeapon(itype:ItemType):void {
 }
 
 //-----------------
-//-- JEWELLERY SHOP
+//-- JEWELERY SHOP
 //-----------------
 public function jewelShopEntry():void {
 	outputText("", true);
-	outputText("You enter the jewellery store. There are large array of rings and necklaces, all stored in thick glass cases. A male lizan sits behind the counter, watching you as you look around the store. He is nude save for his loincloth and a gold necklace. His chin is pierced with several gold ring piercings. He also wears a diamond ring on one of his fingers.\n\n", false);
-	outputText("<i>\"Welcome to my jewellery store. Here, I sell rings and necklaces. They can make you look great but not only that, I also have special jewelry that may have magical effect on you. The effect stays on until you take them off,\"</i> the lizan says.", false);
+	outputText("You enter the jewelery store. There are large array of rings and necklaces, all stored in thick glass cases. A male lizan sits behind the counter, watching you as you look around the store. He is nude save for his loincloth and a gold necklace. His chin is pierced with several gold ring piercings. He also wears a diamond ring on one of his fingers.\n\n", false);
+	outputText("<i>\"Welcome to my jewelery store. Here, I sell rings and necklaces. They can make you look great but not only that, I also have special jewelry that may have a magical effect on you. The effect stay until you remove them,\"</i> the lizan says.", false);
 
 	choices("Next", jewelShopInside,
 			"", 0,
@@ -1624,7 +1624,7 @@ private function debitJewel(itype:ItemType):void {
 //-- CARPENTRY SHOP
 //-----------------
 public function carpentryShopEntry():void {
-	outputText("You enter the shop marked by a sign with hammer and saw symbol painted on it. There are array of tools all hung neatly. A human shopkeeper stands behind the counter. He appears to be wearing typical lumberjack outfit.\n\n", true);
+	outputText("You enter the shop marked by a sign with hammer and saw symbol painted on it. There's an array of tools all hung neatly along the walls. A human shopkeeper stands behind the counter. He appears to be wearing a typical lumberjack outfit.\n\n", true);
 	outputText("\"<i>Welcome to my hardware shop. Feel free to look around,</i>\" the shopkeeper says. \n\n", false);
 	doNext(carpentryShopInside);
 }
@@ -1651,7 +1651,7 @@ public function carpentryShopBuySet():void {
 		doNext(carpentryShopInside);
 		return;
 	}
-	outputText("You walk around for a while until you see a wooden toolbox. It's filled with assorted tools. One of them is a hammer. Another one is a saw. Even another is an axe. There is a measuring tape. There's even a book with hundreds of pages, all about how to use tools and it even has project instructions! Just wht you need to build your cabin. There's even a compartment for nails.\n\n", true);
+	outputText("You walk around for a while until you see a wooden toolbox. It's filled with assorted tools. One of them is a hammer. Another one is a saw. Even another is an axe. There is a measuring tape. There's even a book with hundreds of pages, all about how to use tools and it even has project instructions! Just what you need to build your cabin. There's even a compartment for nails.\n\n", true);
 	outputText("Do you buy it?", false);
 	if (player.gems >= 200)
 	{
@@ -1682,7 +1682,7 @@ public function carpentryShopBuySetNo():void {
 public function carpentryShopBuyNails():void {
 	if (player.hasKeyItem("Carpenter's Toolbox") >= 0)
 	{
-		outputText("You ask him if he has nails for sale. He replies \"<i>Certainly! I've got nails. Your toolbox can hold up to two hundred nails. I'll be selling nails at a price of four gems per nail.</i>\" \n\n", true);
+		outputText("You ask him if he has any nails for sale. He replies \"<i>Certainly! I've got nails. Your toolbox can hold up to two hundred nails. I'll be selling nails at a price of four gems per nail.</i>\" \n\n", true);
 		if (player.hasKeyItem("Carpenter's Toolbox") >= 0) outputText("Nails: " + player.keyItemv1("Carpenter's Toolbox") + "/200", false)
 		else outputText("Nails: " + 0 + "/200", false)
 		simpleChoices("Buy 10", carpentryShopBuyNailsA, "Buy 25", carpentryShopBuyNailsB, "Buy 50", carpentryShopBuyNailsC, "Buy 75", carpentryShopBuyNailsD, "Buy 100", carpentryShopBuyNailsE)
@@ -1742,7 +1742,7 @@ private function carpentryShopBuyNailsYes():void {
 
 //Buy wood
 public function carpentryShopBuyWood():void {
-	outputText("You ask him if he has nails for sale. He replies \"<i>Certainly! I've got extra supply of wood. I'll be selling wood at a price of 25 gems per wood plank.</i>\" \n\n", true);
+	outputText("You ask him if he has any wood for sale. He replies \"<i>Certainly! I've got extra supply of wood. I'll be selling wood at a price of 25 gems per wood plank.</i>\" \n\n", true);
 	outputText("Wood: " + flags[kFLAGS.CAMP_CABIN_WOOD_RESOURCES] + "/100", false)
 	simpleChoices("Buy 10", carpentryShopBuyWoodA, "Buy 20", carpentryShopBuyWoodB, "Buy 30", carpentryShopBuyWoodC, "Buy 40", carpentryShopBuyWoodD, "Buy 50", carpentryShopBuyWoodE)
 	addButton(9, "Back", carpentryShopInside)
@@ -1779,7 +1779,7 @@ private function carpentryShopBuyWoodYes():void {
 	{
 		player.gems -= (wood * 25);
 		flags[kFLAGS.CAMP_CABIN_WOOD_RESOURCES] += wood;
-		outputText("You hand over " + (wood * 25) + " gems. \"<i>I'll have the caravan deliver the wood to your camp as soon as you leave my shop,</i>\" he says.\n\n", true);
+		outputText("You hand over " + (wood * 25) + " gems. \"<i>I'll have the caravan deliver the wood to your camp,</i>\" he says.\n\n", true);
 		if (flags[kFLAGS.CAMP_CABIN_WOOD_RESOURCES] > 100)
 		{
 			outputText("Unfortunately, your wood supply seem to be full. You inform him. He refunds you the gems.\n\n", false);
